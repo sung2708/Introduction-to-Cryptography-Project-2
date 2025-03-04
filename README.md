@@ -36,7 +36,7 @@ $$
 
 ---
 
-## 1.1 Problem Requirements
+### 1.1 Problem Requirements
 
 In this section, students are required to design a **C++** program to compute the shared secret key between Alice and Bob after performing the **Diffie-Hellman key exchange**. The program must meet the following criteria:
 
@@ -56,9 +56,9 @@ In this section, students are required to design a **C++** program to compute th
 
 ---
 
-## 1.2 Input and Output Files
+### 1.2 Input and Output Files
 
-### Input File: `test.inp`
+#### Input File: `test.inp`
 The input file consists of **three lines**:
 
 1. The **first line** contains two **positive integers**:  
@@ -81,17 +81,17 @@ $$
 
 ---
 
-## 1.3 Example
+### 1.3 Example
 
-### Example 1
-#### Input (`test.inp`):
+#### Example 1
+##### Input (`test.inp`):
 ```
 65 1D
 12
 21
 ```
 
-#### Explanation:
+###### Explanation:
 - $0x65 = 101$, $0x1D = 29$, $0x12 = 18$, $0x21 = 33$.
 - Given $p = 101$, the shared secret key is computed as:
 
@@ -99,22 +99,22 @@ $$
 K = 29^{(18 \times 33)} \mod 101 = 85 = 0x55
 $$
 
-#### Output (`test.out`):
+##### Output (`test.out`):
 ```
 55
 ```
 
 ---
 
-### Example 2
-#### Input (`test.inp`):
+#### Example 2
+##### Input (`test.inp`):
 ```
 67 2B
 1A
 41
 ```
 
-#### Explanation:
+##### Explanation:
 - $0x67 = 103$, $0x2B = 43$, $0x1A = 26$, $0x41 = 65$.
 - Given $p = 103$, the shared secret key is computed as:
 
@@ -122,14 +122,14 @@ $$
 K = 43^{(26 \times 65)} \mod 103 = 19 = 0x13
 $$
 
-#### Output (`test.out`):
+##### Output (`test.out`):
 ```
 13
 ```
 
 ---
 
-## 1.4 Constraints
+### 1.4 Constraints
 
 - $g, a, b \in \mathbb{Z}^*_p$.
 - **40% of test cases**: $|p| \leq 64$ bits (40% of total score).
@@ -137,7 +137,7 @@ $$
 - **10% of test cases**: $128 < |p| \leq 256$ bits (10% of total score).
 - **10% of test cases**: $256 < |p| \leq 512$ bits (10% of total score).
 
-# 2. Diffie-Hellman on Elliptic Curve (5 points)
+## 2. Diffie-Hellman on Elliptic Curve (5 points)
 
 Given a large prime number $p$, we define an elliptic curve in the form (EC):
 
@@ -173,7 +173,7 @@ $$ P + O = P \quad \text{and} \quad P + (-P) = -O. $$
 
 The elliptic curve group $(E(a, b, p), +)$ forms an **abelian group**. This allows us to define the **elliptic curve discrete logarithm problem (ECDLP)**, analogous to the discrete logarithm problem in $\mathbb{Z}^*_p$:
 
-### Definition 2.1
+#### Definition 2.1
 Given an elliptic curve (EC) over a finite field $\mathbb{F}_p$, a point $Q \in E(a, b, p)$, and a generator $G \in E(a, b, p)$, the elliptic curve discrete logarithm problem requires finding an integer $x \in \mathbb{Z}^*_p$ such that:
 
 $$ Q = xG = G + G + ... + G \quad (x \text{ times}) $$
@@ -199,9 +199,9 @@ In this task, students must design a program to compute $R = P + Q$ for given po
   where `test.inp` is the input file and `test.out` is the output file.
 - The execution time for each test case must not exceed **60 seconds**.
 
-## 2.2 Input and Output Files
+### 2.2 Input and Output Files
 
-### `test.inp`
+##### `test.inp`
 The input file consists of **three lines**:
 1. The first line contains three positive integers: the prime number $p$ and the coefficients $a, b$ defining the elliptic curve.
 2. The second line contains two positive integers representing the point $P \in E(a, b, p)$ as $(x_P, y_P)$.
@@ -209,30 +209,30 @@ The input file consists of **three lines**:
 
 All values are given in **uppercase hexadecimal format** in **big-endian** order.
 
-### `test.out`
+##### `test.out`
 The output file contains **two positive integers** representing the point $R = P + Q \) as \( (x_R, y_R)$, also stored in **uppercase hexadecimal format** in **big-endian** order.
 
-## 2.3 Example
+### 2.3 Example
 
-### Example Input (`test.inp`)
+#### Example Input (`test.inp`)
 ```
 7CF 724 68B
 440 D0
 212 1CF
 ```
 
-### Example Output (`test.out`)
+#### Example Output (`test.out`)
 ```
 440 D0
 ```
 
-#### Explanation
+##### Explanation
 - Given $p = 0x7CF = 1999$, the elliptic curve equation is:
   $y^2 = x^3 + 1828x + 1675 \mod 1999$
 - The points $P = (0x212, 0x1CF) = (530, 463)$ and $Q = (0x6EB, 0x31) = (1771, 49)$ are on the curve.
 - The computed sum is $R = (1088, 208) = (0x440, 0xD0)$.
 
-## 2.5 Constraints
+### 2.5 Constraints
 - $a, b \in \mathbb{Z}^*_p$.
 - The input and output will **never** include the point at infinity $O$.
 - **50% of test cases**: $|p| \leq 64$ bits.
